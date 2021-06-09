@@ -77,21 +77,12 @@
 			isa = PBXGroup;
 			children = (
 				2273B91C266FB561000B1BC3 /* Main */,
-				2204F115266BFEEE004CE192 /* MedicinesViewController.swift */,
+				22C3D5C7267121BD00840654 /* Common */,
+				22C3D5BC267120EF00840654 /* Modules */,
 				2204F117266BFEEE004CE192 /* Main.storyboard */,
 				2204F11A266BFEF0004CE192 /* Assets.xcassets */,
 				2204F11C266BFEF0004CE192 /* LaunchScreen.storyboard */,
 				2204F11F266BFEF0004CE192 /* Info.plist */,
-				2273B909266F29C8000B1BC3 /* APIServices.swift */,
-				2273B90C266FA990000B1BC3 /* Resource.swift */,
-				2273B90F266FA9BB000B1BC3 /* MedicineRequests.swift */,
-				2273B912266FAA0F000B1BC3 /* Constants.swift */,
-				2273B916266FB29B000B1BC3 /* Medicine.swift */,
-				2273B919266FB491000B1BC3 /* WaitingLoader.swift */,
-				2273B91D266FB5C3000B1BC3 /* MedicineListViewModel.swift */,
-				2273B926266FD995000B1BC3 /* MedicineViewModel.swift */,
-				2273B92A266FF332000B1BC3 /* MedicineViewCell.swift */,
-				2273B92D266FF4F4000B1BC3 /* Extensions.swift */,
 			);
 			path = MedicalPrescription;
 			sourceTree = "<group>";
@@ -103,6 +94,135 @@
 				2204F113266BFEEE004CE192 /* SceneDelegate.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		22C3D5BA267120CC00840654 /* WebService */ = {
+			isa = PBXGroup;
+			children = (
+				2273B909266F29C8000B1BC3 /* APIServices.swift */,
+				2273B90C266FA990000B1BC3 /* Resource.swift */,
+				2273B90F266FA9BB000B1BC3 /* MedicineRequests.swift */,
+			);
+			path = WebService;
+			sourceTree = "<group>";
+		};
+		22C3D5BC267120EF00840654 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				22C3D5BD267120FA00840654 /* MedicineListing */,
+				22C3D5BE2671211F00840654 /* PrescriptionPad */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		22C3D5BD267120FA00840654 /* MedicineListing */ = {
+			isa = PBXGroup;
+			children = (
+				22C3D5C02671214700840654 /* ViewModels */,
+				22C3D5C32671216F00840654 /* Views */,
+				22C3D5C12671215C00840654 /* Models */,
+			);
+			path = MedicineListing;
+			sourceTree = "<group>";
+		};
+		22C3D5BE2671211F00840654 /* PrescriptionPad */ = {
+			isa = PBXGroup;
+			children = (
+				22C3D5C6267121A600840654 /* Models */,
+				22C3D5C5267121A100840654 /* Views */,
+				22C3D5C42671219A00840654 /* ViewModels */,
+			);
+			path = PrescriptionPad;
+			sourceTree = "<group>";
+		};
+		22C3D5C02671214700840654 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				2273B91D266FB5C3000B1BC3 /* MedicineListViewModel.swift */,
+				2273B926266FD995000B1BC3 /* MedicineViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		22C3D5C12671215C00840654 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2273B916266FB29B000B1BC3 /* Medicine.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		22C3D5C32671216F00840654 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2204F115266BFEEE004CE192 /* MedicinesViewController.swift */,
+				2273B92A266FF332000B1BC3 /* MedicineViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		22C3D5C42671219A00840654 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		22C3D5C5267121A100840654 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		22C3D5C6267121A600840654 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		22C3D5C7267121BD00840654 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				22C3D5BA267120CC00840654 /* WebService */,
+				22C3D5CB267121F300840654 /* Resources */,
+				22C3D5CA267121ED00840654 /* Global */,
+				22C3D5C9267121CF00840654 /* CustomViews */,
+				22C3D5C8267121C500840654 /* Extensions */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		22C3D5C8267121C500840654 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2273B92D266FF4F4000B1BC3 /* Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		22C3D5C9267121CF00840654 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				2273B919266FB491000B1BC3 /* WaitingLoader.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		22C3D5CA267121ED00840654 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				2273B912266FAA0F000B1BC3 /* Constants.swift */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
+		22C3D5CB267121F300840654 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
