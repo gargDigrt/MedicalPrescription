@@ -11,9 +11,6 @@ import Foundation
 /// Contains methods for API service requests
 class APIServices {
     
-    // MARK: - Singleton
-    static let shared = APIServices()
-    
     // MARK: - Services
     /// Method to request URLRequest
     /// - Parameters:

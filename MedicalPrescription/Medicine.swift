@@ -13,5 +13,11 @@ struct Medicine: Codable {
     let type: String
     let company: String
     let strength: String?
-    let strengthtype: String?
+    let strengthType: String?
+    var dailyDoses: Int = 0
+    
+    enum CodingKeys: String, CodingKey {
+        case id, name, type, company, strength
+        case strengthType = "strengthtype"
+    }
 }
