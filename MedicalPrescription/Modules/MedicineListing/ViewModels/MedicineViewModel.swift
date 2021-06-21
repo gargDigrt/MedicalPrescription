@@ -9,13 +9,16 @@ import Foundation
 
 class MedicineViewModel{
     
+    //Private Property
     private var medicine: Medicine
     
+    //Initializer
     init(_ medicine: Medicine) {
         self.medicine = medicine
     }
 }
 
+//MARK:- Properties
 extension MedicineViewModel {
     var name: String {
         return medicine.name ?? "NA"
@@ -36,6 +39,7 @@ extension MedicineViewModel {
     }
 }
 
+//MARK:- Custom Methods
 extension MedicineViewModel {
     
     func modifyDosesTo(num: Int) {
@@ -53,16 +57,8 @@ extension MedicineViewModel {
     }
 }
 
-
-extension MedicineViewModel: Hashable {
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(ObjectIdentifier(self))
-    }
-}
-
+//MARK:- Equitable Protocol
 extension MedicineViewModel: Equatable {
-    
     static func == (lhs: MedicineViewModel, rhs: MedicineViewModel) -> Bool {
         return lhs.medicine == rhs.medicine
     }

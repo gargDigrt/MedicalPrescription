@@ -18,11 +18,15 @@ protocol MedicineDeleteDelegate: class {
 
 class PrescriptionViewController: UIViewController {
 
+    //IBOutlet
     @IBOutlet var prescriptionPadView: UIView!
     @IBOutlet var prescribedMedicineTableView: UITableView!
+    
+    //Properties
     private var prescription = [MedicineViewModel]()
     weak var updateDelegate: ReturnUpdatedDataDelegate?
     
+    //MARK:- View's life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         DispatchQueue.main.async{
@@ -34,6 +38,7 @@ class PrescriptionViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        //Navigation bar visibility
         navigationController?.navigationBar.isHidden = true
     }
     
@@ -47,6 +52,7 @@ class PrescriptionViewController: UIViewController {
         fatalError("You must create this view controller with CityViewModel.")
     }
     
+    //MARK:- Button Actions
     @IBAction func backButtonTapped(_ : UIButton) {
         DispatchQueue.main.async {
             self.navigationController?.popViewController(animated: true)
@@ -62,6 +68,8 @@ class PrescriptionViewController: UIViewController {
     }
 }
 
+
+//MARK:- Table view methods
 extension PrescriptionViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -84,7 +92,7 @@ extension PrescriptionViewController: UITableViewDelegate, UITableViewDataSource
 }
 
 
-
+//MARK:- MedicineDeleteDelegate
 extension PrescriptionViewController: MedicineDeleteDelegate {
     func delete(medicine: MedicineViewModel) {
         prescription = prescription.filter{$0.name != medicine.name}

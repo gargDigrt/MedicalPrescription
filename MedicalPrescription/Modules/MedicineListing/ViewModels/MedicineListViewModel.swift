@@ -13,6 +13,11 @@ protocol MedicineListDelegate: class {
 }
 
 class MedicineListViewModel {
+    
+    //Properties
+    weak var delegate: MedicineListDelegate?
+    
+    // Private properties
     private var medicines: [Medicine]? {
         didSet {
             guard let medicines = medicines else {return}
@@ -20,11 +25,11 @@ class MedicineListViewModel {
             self.delegate?.didReceiveMedicines(medicines: medicinesVMs)
         }
     }
-    weak var delegate: MedicineListDelegate?
 }
 
 extension MedicineListViewModel {
     
+    /// This will get all medicine from server and then save into database
     func saveAndGetMedicines() {
         DatabaseManager.saveMedicinesToDB() { success, error in
             if error != nil {

@@ -38,18 +38,22 @@ class MedicinesViewController: UIViewController{
         searchController.searchBar.sizeToFit()
         medicineListView.tableHeaderView = searchController.searchBar
         
+        //Navigation Bar setup
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "pad"), style: .plain, target: self, action: #selector(moveToPrescriptionPad))
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "new"), style: .plain, target: self, action: #selector(newPrescription))
         
+        //APi call for medcines
         getAvailableMedicines()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        //Navigation bar visibility
         navigationController?.navigationBar.isHidden = false
     }
     
+    //MARK:- Custom behaviour
     private func getAvailableMedicines() {
         DispatchQueue.main.async{
             WaitingLoader.shared.show(onView: self.view)
@@ -58,6 +62,7 @@ class MedicinesViewController: UIViewController{
         viewModel.saveAndGetMedicines()
     }
     
+    //MARK:- Selector methods
     @objc func moveToPrescriptionPad() {
         guard let prescriptionVC = storyboard?.instantiateViewController(identifier: PrescriptionViewController.identifier, creator: { coder in
             return PrescriptionViewController(coder: coder, prescription: self.prescription)
@@ -79,6 +84,7 @@ class MedicinesViewController: UIViewController{
     }
 }
 
+//MARK:- ReturnUpdatedDataDelegate
 extension MedicinesViewController: ReturnUpdatedDataDelegate {
     func didReceiveUpdatedData(medicines: [MedicineViewModel]) {
         let updated = self.medicines.filter({!medicines.contains($0)})
@@ -87,8 +93,9 @@ extension MedicinesViewController: ReturnUpdatedDataDelegate {
             self.medicineListView.reloadData()
         }
     }
-    
 }
+
+//MARK:- MedicineListDelegate
 extension MedicinesViewController: MedicineListDelegate {
     
     func didReceiveMedicines(medicines: [MedicineViewModel]) {
@@ -108,6 +115,7 @@ extension MedicinesViewController: MedicineListDelegate {
     
 }
 
+//MARK:- MedicineDoseDelegate
 extension MedicinesViewController: MedicineDoseDelegate {
     func didUpdateDoseFor(medicine: MedicineViewModel) {
         if !prescription.contains(medicine) {

@@ -10,6 +10,9 @@ import CoreData
 
 class DatabaseManager {
     
+    
+    /// This will fetch all medicines from the database
+    /// - Returns:  Return an array of medicines
     class func fetchMedicinesFromDB(_ completion: @escaping(_ medicines: [Medicine])->()) {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Medicine")
         request.returnsObjectsAsFaults = false
@@ -25,6 +28,9 @@ class DatabaseManager {
     }
     
     
+    
+    /// This will save all medicine objects into database
+    /// - Returns: completion with success or error
     class func saveMedicinesToDB(completion: @escaping (_ success: Bool,_ error: Error?) -> ()) {
         let urlText = MedicineRequests.medicine.getEndPoint()
         let resource = Resource<[Medicine]>(urlText)
@@ -41,6 +47,10 @@ class DatabaseManager {
         }
     }
     
+    
+    /// This will fetch a prescription entity with specific ID
+    /// - Parameter id: A Unique Id for prescription identification
+    /// - Returns: Returns a prescription object
     class func fetchPrescriptionWith(id: String) -> Prescription? {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Prescription")
         request.predicate = NSPredicate(format: "uuid LIKE '%@'", id)
@@ -55,6 +65,11 @@ class DatabaseManager {
         }
     }
     
+    
+    /// This will save prescription with ID & medicine
+    /// - Parameters:
+    ///   - id: A uniqe id for identification
+    ///   - medicine: A medicine object that belongs to prescription object
     class func savePrescriptionWith(id: String, medicine: Medicine) {
         if let prescription = fetchPrescriptionWith(id: id) {
             prescription.addToMeds(medicine)
@@ -67,6 +82,9 @@ class DatabaseManager {
         }
     }
     
+    
+    /// This will delete all records for an entity name
+    /// - Parameter name: Takes an entity name 
     private class func deleteOldRecordsForEntity(name: String) {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: name)
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: request)

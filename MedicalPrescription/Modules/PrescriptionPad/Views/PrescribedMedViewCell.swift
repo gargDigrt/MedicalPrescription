@@ -9,11 +9,12 @@ import UIKit
 
 class PrescribedMedViewCell: UITableViewCell {
 
+    //IBOutlet
     @IBOutlet var medicineNameLabel: UILabel!
     @IBOutlet var doseLabel: UILabel!
     
+    //Properties
     weak var deleteDelegate: MedicineDeleteDelegate?
-    
     var mediVm: MedicineViewModel! {
         didSet {
             DispatchQueue.main.async {
@@ -22,6 +23,7 @@ class PrescribedMedViewCell: UITableViewCell {
             }
         }
     }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -33,6 +35,7 @@ class PrescribedMedViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    //MARK:- Button actions
     @IBAction func changeDailyDoses(_ sender: UIButton) {
         switch sender.tag {
         case 111:

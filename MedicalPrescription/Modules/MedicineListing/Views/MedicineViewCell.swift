@@ -13,11 +13,13 @@ protocol MedicineDoseDelegate: class {
 
 class MedicineViewCell: UITableViewCell {
     
+    //IBOutlet
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var strengthLabel: UILabel!
     @IBOutlet var companyNameLabel: UILabel!
     @IBOutlet var doseValueLabel: UILabel!
     
+    //Properties
     weak var doseDelegate: MedicineDoseDelegate!
     var medicineVM: MedicineViewModel! {
         didSet {
@@ -32,7 +34,6 @@ class MedicineViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -41,6 +42,7 @@ class MedicineViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    //MARK:= Button Actions
     @IBAction func changeDailyDoses(_ sender: UIButton) {
         switch sender.tag {
         case 111:

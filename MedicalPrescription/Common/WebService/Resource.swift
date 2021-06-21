@@ -13,6 +13,13 @@ struct Resource<T: Codable> {
     var urlRequest: URLRequest
 
     // MARK: - Initializer
+    
+    
+    /// This will make a network call
+    /// - Parameters:
+    ///   - url: Url for the web service to be called
+    ///   - params: Parameters for the web service call.
+    ///   - method: method type GET/POST
     init(_ url: String,_ params: [String: String] = DEFAULT_PARAMS,_ method: HttpMethod = .get) {
         var urlComp = URLComponents(string: url)!
         var queries:[URLQueryItem] = []
