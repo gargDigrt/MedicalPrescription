@@ -55,7 +55,10 @@ class PrescriptionViewController: UIViewController {
     }
     
     @IBAction func saveButtonTapped(_ : UIButton) {
-        
+        let newUUID = UUID().uuidString
+        for meds in prescription {
+            meds.saveToDB(prescriptionID: newUUID)
+        }
     }
 }
 

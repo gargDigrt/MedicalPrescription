@@ -2,7 +2,7 @@
 //  Medicine+CoreDataProperties.swift
 //  MedicalPrescription
 //
-//  Created by Vivek on 14/06/21.
+//  Created by Vivek on 21/06/21.
 //
 //
 
@@ -23,6 +23,7 @@ extension Medicine {
     @NSManaged public var strength: String?
     @NSManaged public var strengthType: String?
     @NSManaged public var type: String?
+    @NSManaged public var ofPrescription: Prescription?
 
 }
 

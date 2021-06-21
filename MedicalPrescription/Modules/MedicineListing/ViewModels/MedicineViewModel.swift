@@ -47,6 +47,10 @@ extension MedicineViewModel {
         medicine.dose = 0
         return self
     }
+    
+    func saveToDB(prescriptionID: String) {
+        DatabaseManager.savePrescriptionWith(id: prescriptionID, medicine: medicine)
+    }
 }
 
 

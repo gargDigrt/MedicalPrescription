@@ -8,13 +8,20 @@
         <attribute name="strength" optional="YES" attributeType="String"/>
         <attribute name="strengthType" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
+        <relationship name="ofPrescription" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Prescription" inverseName="meds" inverseEntity="Prescription"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
+    <entity name="Prescription" representedClassName="Prescription" syncable="YES">
+        <attribute name="medicines" attributeType="Transformable" customClassName="[Medicine]"/>
+        <attribute name="uuid" attributeType="String"/>
+        <relationship name="meds" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Medicine" inverseName="ofPrescription" inverseEntity="Medicine"/>
+    </entity>
     <elements>
-        <element name="Medicine" positionX="-45" positionY="0" width="128" height="134"/>
+        <element name="Medicine" positionX="-45" positionY="0" width="128" height="163"/>
+        <element name="Prescription" positionX="-367.8080444335938" positionY="-78.87631225585938" width="128" height="74"/>
     </elements>
 </model>

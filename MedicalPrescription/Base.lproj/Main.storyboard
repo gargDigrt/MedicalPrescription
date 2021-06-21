@@ -246,6 +246,7 @@
                                         <state key="normal" image="save"/>
                                         <connections>
                                             <action selector="backButtonTapped:" destination="awA-hP-0AE" eventType="touchUpInside" id="Lym-bl-7Ie"/>
+                                            <action selector="saveButtonTapped:" destination="awA-hP-0AE" eventType="touchUpInside" id="CKC-cl-CLS"/>
                                         </connections>
                                     </button>
                                 </subviews>
