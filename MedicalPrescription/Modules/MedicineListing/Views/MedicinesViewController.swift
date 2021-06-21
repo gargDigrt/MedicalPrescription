@@ -9,46 +9,88 @@ import UIKit
 
 class MedicinesViewController: UIViewController{
     
+    //IBOutlet
     @IBOutlet var medicineListView: UITableView!
     
-    let viewModel = MedicineListViewModel(apiService: APIServices())
+    //Variables
+    var prescription: [MedicineViewModel] = []
     var medicines: [MedicineViewModel] = []
     lazy var filteredMedicines: [MedicineViewModel] = []
     var searchController: UISearchController!
-    
     var isSearchBarEmpty: Bool {
       return searchController.searchBar.text?.isEmpty ?? true
     }
-
     var isFiltering: Bool {
       return searchController.isActive && !isSearchBarEmpty
     }
 
+    //Constants
+    let viewModel = MedicineListViewModel()
     
+    
+    //MARK:- View's life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        viewModel.delegate = self
+        
+        // Search Controller setup
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
-
         searchController.searchBar.sizeToFit()
         medicineListView.tableHeaderView = searchController.searchBar
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "pad"), style: .plain, target: self, action: #selector(moveToPrescriptionPad))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "new"), style: .plain, target: self, action: #selector(newPrescription))
         
         getAvailableMedicines()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.isHidden = false
+    }
     
     private func getAvailableMedicines() {
         DispatchQueue.main.async{
             WaitingLoader.shared.show(onView: self.view)
         }
-        viewModel.getAvailableMedicines()
+        viewModel.delegate = self
+        viewModel.saveAndGetMedicines()
+    }
+    
+    @objc func moveToPrescriptionPad() {
+        guard let prescriptionVC = storyboard?.instantiateViewController(identifier: PrescriptionViewController.identifier, creator: { coder in
+            return PrescriptionViewController(coder: coder, prescription: self.prescription)
+        }) else {
+            fatalError("Failed to load PrescriptionViewController from storyboard.")
+        }
+        prescriptionVC.updateDelegate = self
+        DispatchQueue.main.async {
+            self.navigationController?.show(prescriptionVC, sender: nil)
+        }
+    }
+    
+    @objc func newPrescription() {
+        filteredMedicines.removeAll()
+        medicines = medicines.map({$0.resetDose()})
+        DispatchQueue.main.async {
+            self.medicineListView.reloadData()
+        }
+    }
+}
+
+extension MedicinesViewController: ReturnUpdatedDataDelegate {
+    func didReceiveUpdatedData(medicines: [MedicineViewModel]) {
+        let updated = self.medicines.filter({!medicines.contains($0)})
+        self.medicines = medicines + updated
+        DispatchQueue.main.async {
+            self.medicineListView.reloadData()
+        }
     }
     
 }
-
 extension MedicinesViewController: MedicineListDelegate {
+    
     func didReceiveMedicines(medicines: [MedicineViewModel]) {
         self.medicines = medicines
         DispatchQueue.main.async {
@@ -64,6 +106,15 @@ extension MedicinesViewController: MedicineListDelegate {
         print(error.localizedDescription)
     }
     
+}
+
+extension MedicinesViewController: MedicineDoseDelegate {
+    func didUpdateDoseFor(medicine: MedicineViewModel) {
+        if !prescription.contains(medicine) {
+            prescription.append(medicine)
+        }
+        prescription = prescription.filter{$0.dailyDoses != 0}
+    }
     
 }
 
@@ -81,13 +132,9 @@ extension MedicinesViewController: UITableViewDataSource, UITableViewDelegate {
             fatalError("Couldn't dequeue MedicineViewCell!!")
         }
         let medVM = isFiltering ? filteredMedicines[indexPath.row] : medicines[indexPath.row]
-        
+        medCell.doseDelegate = self
         medCell.medicineVM = medVM
         return medCell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
     }
     
 }
@@ -106,15 +153,4 @@ extension MedicinesViewController: UISearchResultsUpdating {
         }
     }
 }
-    
 
-
-//Tablet
-//Suspension
-//Syrup
-//Drops
-//Oral Drops
-//Tube
-//Liquid
-//KIT
-//Capsule

@@ -7,15 +7,19 @@
 
 import UIKit
 
+protocol MedicineDoseDelegate: class {
+    func didUpdateDoseFor(medicine: MedicineViewModel)
+}
+
 class MedicineViewCell: UITableViewCell {
     
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var strengthLabel: UILabel!
     @IBOutlet var companyNameLabel: UILabel!
     @IBOutlet var doseValueLabel: UILabel!
-    @IBOutlet var itemTypeImageView: UIImageView!
     
-    var medicineVM: MedicineViewModel? {
+    weak var doseDelegate: MedicineDoseDelegate!
+    var medicineVM: MedicineViewModel! {
         didSet {
             guard let viewModel = medicineVM else {return}
             nameLabel.text = viewModel.name
@@ -37,7 +41,14 @@ class MedicineViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    @IBAction func changeDailyDoses(_ sender: UIStepper) {
-        
+    @IBAction func changeDailyDoses(_ sender: UIButton) {
+        switch sender.tag {
+        case 111:
+            medicineVM?.modifyDosesTo(num: -1)
+        default:
+            medicineVM?.modifyDosesTo(num: 1)
+        }
+        doseValueLabel.text = String(describing: medicineVM.dailyDoses)
+        self.doseDelegate?.didUpdateDoseFor(medicine: medicineVM)
     }
 }

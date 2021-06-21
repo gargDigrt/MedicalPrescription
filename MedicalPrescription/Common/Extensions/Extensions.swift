@@ -13,3 +13,11 @@ extension UITableViewCell {
         return String(describing: self)
     }
 }
+
+
+extension UIViewController {
+    
+    static var identifier: String {
+        return String(describing: self)
+    }
+}

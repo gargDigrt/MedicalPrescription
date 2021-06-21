@@ -9,7 +9,9 @@ import Foundation
 
 /// APIServices
 /// Contains methods for API service requests
-class APIServices {
+class HTTPClient {
+    
+    static let shared = HTTPClient()
     
     // MARK: - Services
     /// Method to request URLRequest
