@@ -20,6 +20,7 @@
 		226F97FF2680B5BB0007DEEE /* Medicine+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226F97FB2680B5BB0007DEEE /* Medicine+CoreDataProperties.swift */; };
 		226F98082680B9990007DEEE /* Prescription+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226F98062680B9990007DEEE /* Prescription+CoreDataClass.swift */; };
 		226F98092680B9990007DEEE /* Prescription+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226F98072680B9990007DEEE /* Prescription+CoreDataProperties.swift */; };
+		226F98352680F3830007DEEE /* medicine.png in Resources */ = {isa = PBXBuildFile; fileRef = 226F98342680F3830007DEEE /* medicine.png */; };
 		2273B90A266F29C9000B1BC3 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2273B909266F29C8000B1BC3 /* HTTPClient.swift */; };
 		2273B90D266FA990000B1BC3 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2273B90C266FA990000B1BC3 /* Resource.swift */; };
 		2273B910266FA9BB000B1BC3 /* MedicineRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2273B90F266FA9BB000B1BC3 /* MedicineRequests.swift */; };
@@ -50,6 +51,7 @@
 		226F97FB2680B5BB0007DEEE /* Medicine+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Medicine+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		226F98062680B9990007DEEE /* Prescription+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Prescription+CoreDataClass.swift"; sourceTree = "<group>"; };
 		226F98072680B9990007DEEE /* Prescription+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Prescription+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		226F98342680F3830007DEEE /* medicine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = medicine.png; sourceTree = "<group>"; };
 		2273B909266F29C8000B1BC3 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		2273B90C266FA990000B1BC3 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		2273B90F266FA9BB000B1BC3 /* MedicineRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineRequests.swift; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 		22C3D5CB267121F300840654 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				226F98342680F3830007DEEE /* medicine.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2204F11E266BFEF0004CE192 /* LaunchScreen.storyboard in Resources */,
+				226F98352680F3830007DEEE /* medicine.png in Resources */,
 				2204F11B266BFEF0004CE192 /* Assets.xcassets in Resources */,
 				2204F119266BFEEE004CE192 /* Main.storyboard in Resources */,
 			);
